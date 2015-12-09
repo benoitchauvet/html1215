@@ -1,3 +1,4 @@
 Listes HTML : http://jsbin.com/yukaduqina/edit?html,output
 Tables HTML : http://jsbin.com/woyiyulamu/1/edit?html,output
 Structure page : http://jsbin.com/mabosiniqe/edit?html,css,output
+Formulaires : http://jsbin.com/jizedixapi/1/edit?html,output
