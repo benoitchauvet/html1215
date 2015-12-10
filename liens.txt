@@ -3,3 +3,4 @@ Tables HTML : http://jsbin.com/woyiyulamu/1/edit?html,output
 Structure page : http://jsbin.com/mabosiniqe/edit?html,css,output
 Formulaires : http://jsbin.com/jizedixapi/1/edit?html,output
 Dimensionnement : http://jsbin.com/sufirikehu/edit?css,output
+Positionnement : http://jsbin.com/lavekateqi/1/edit?html,css,output
