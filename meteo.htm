@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="/css/tree.css"/>
+  <title>Tree News</title>
+</head>
+<body>
+
+	<input type="text" id="txtVille" placeholder="choisir une ville"/>
+	<button id="btnMeteo">Voir la météo</button>
+	
+	<ul>
+		<li>Température : <span id="temp"/></li>
+		<li>Humidité : <span id="hum"/></li>
+		<li>Météo : <span id="descr"/></li>
+	</ul>
+	
+	<script>
+
+		var btn = document.getElementById('btnMeteo');
+		var ville = document.getElementById('txtVille');
+		
+		btn.addEventListener('click', function(){
+			
+			var r = new XMLHttpRequest();
+			
+			var url = 'http://api.openweathermap.org/data/2.5/weather?q='
+						+ ville.value 
+						+ '&appid=2de143494c0b295cca9337e1e96b00e0';
+			
+			r.open('GET', url, true);
+			
+			r.onreadystatechange = function(){
+				  if (r.readyState == 4)
+					{
+					  if (r.status == 200)
+						{
+									
+						  var o = JSON.parse(r.response);
+						  
+						  var temp = document.getElementById('temp');
+						  var hum = document.getElementById('hum');
+						  var descr = document.getElementById('descr');
+						  
+						  temp.innerHTML = o.main.temp;
+						  hum.innerHTML = o.main.humidity;
+						  descr.innerHTML = o.weather[0].description;
+						}
+					}  
+				};
+		
+			r.send();
+		});
+	
+	</script>
+</body>
+</html>

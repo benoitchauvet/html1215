@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>AJAX</title>
+    </head>    
+    <body>
+		
+		<select id="ddlRegions">
+			<option value="0">choisir une region</option>
+
+		</select>
+		
+		<select id="ddlDepartements">
+			
+		</select>
+		
+		<script>
+		
+			window.addEventListener('load', function(){
+			
+			var ddlRegions = document.getElementById('ddlRegions');
+			
+			// chargement initial de la liste des regions :
+			var r = new XMLHttpRequest();
+
+			r.open('GET','regions.php', true);
+
+			r.onreadystatechange = function(){
+			  if (r.readyState == 4)
+				{
+				  if (r.status == 200)
+				   {
+					 var resultat = JSON.parse(r.responseText);
+					 for (var i = 0; i < resultat.regions.length; i++)
+					 {
+						var region = resultat.regions[i];
+						
+						var opt = document.createElement('option');
+						opt.value = region.id;
+						opt.innerHTML = region.nom;
+						
+						ddlRegions.appendChild(opt);
+						//console.log(region.id + " : " + region.nom);
+					 }
+				   }
+				  if (r.status == 404)
+					{
+					  alert("service introuvable !");
+					}
+				}
+			};
+
+			r.send(null);
+						
+			ddlRegions.addEventListener('change', function(){
+				var idRegion = ddlRegions.value;
+				
+				// vider la liste des départements
+				var ddlDepartements = document.getElementById('ddlDepartements');
+				
+				while(ddlDepartements.firstChild)
+				{
+					ddlDepartements.removeChild(ddlDepartements.firstChild);
+				}
+				
+				// récupérer la liste des départements pour cette region (AJAX)
+				var rd = new XMLHttpRequest();
+				rd.open('GET', 'departements.php?region=' + idRegion, true);
+				
+				rd.onreadystatechange = function(){
+					if (rd.readyState == 4)
+					{
+						if (rd.status == 200)
+						{
+							var resultat = JSON.parse(rd.responseText);
+							
+							// remplir la liste des départements avec le resultat recu
+							for(var i = 0; i < resultat.departements.length; i++)
+							{
+								var dpt = document.createElement('option');
+								dpt.value = resultat.departements[i].id;
+								dpt.innerHTML = resultat.departements[i].nom;
+								
+								ddlDepartements.appendChild(dpt);
+							}
+						}
+					}
+				};
+				
+				
+				rd.send();
+				
+			});
+		
+			});
+		</script>
+	</body>
+</html>
