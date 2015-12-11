@@ -7,3 +7,5 @@ Positionnement : http://jsbin.com/lavekateqi/1/edit?html,css,output
 Eléments flottants : http://jsbin.com/yoxepalaze/edit?html,css,output
 Evenements : http://jsbin.com/ponicazilu/edit?js,output
 Propagation evts : http://jsbin.com/zoceyinano/edit?js,output
+Animations & transitions : http://jsbin.com/gocicesuxa/edit?css,output
+API Canvas : http://jsbin.com/pijogeneha/edit?js,output

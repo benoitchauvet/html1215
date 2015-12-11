@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>loc...</title>
+</head>
+<body>
+  <div id="infoposition"></div>
+  
+ <script>  
+	function erreurPosition(error) {
+    var info = "Erreur lors de la géolocalisation : ";
+		switch(error.code) 
+		{
+		case error.TIMEOUT:
+			info += "Timeout !";
+		break;
+		case error.PERMISSION_DENIED:
+		info += "Vous n’avez pas donné la permission";
+		break;
+		case error.POSITION_UNAVAILABLE:
+			info += "La position n’a pu être déterminée";
+		break;
+		case error.UNKNOWN_ERROR:
+			info += "Erreur inconnue";
+		break;
+		default:
+			info += error;
+			break;
+		}
+		document.getElementById("infoposition").innerHTML = info;
+    }
+	
+	function maPosition(position) {
+	  var infopos = "Position déterminée :\n";
+    infopos += "Latitude : "+position.coords.latitude +"\n";
+    infopos += "Longitude: "+position.coords.longitude+"\n";
+    infopos += "Altitude : "+position.coords.altitude +"\n";
+    infopos += "Vitesse  : "+position.coords.speed +"\n";
+    document.getElementById("infoposition").innerHTML = infopos;
+ 
+   
+	}
+
+if(navigator.geolocation)
+  navigator.geolocation.getCurrentPosition(maPosition, erreurPosition);
+
+  </script>
+ </body>
+ </html>
